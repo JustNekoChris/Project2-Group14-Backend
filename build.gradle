@@ -26,3 +26,7 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+bootJar {
+	mainClass.set("com.project2.group14.demo.RestServiceApplication")
+}
