@@ -28,5 +28,5 @@ tasks.named('test') {
 }
 
 bootJar {
-	mainClass.set("com.project2.group14.demo.RestServiceApplication")
+	mainClass = "com.project2.group14.demo.RestServiceApplication"
 }
