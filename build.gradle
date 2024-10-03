@@ -32,5 +32,5 @@ tasks.named('test') {
 
 // Set the main class for the JAR file
 bootJar {
-	mainClass = 'com.project2.group14.demo.DemoApplication' // Use 'mainClassName' instead of 'mainClass'
+	mainClass.set('com.project2.group14.demo.DemoApplication') // Use 'mainClassName' instead of 'mainClass'
 }
