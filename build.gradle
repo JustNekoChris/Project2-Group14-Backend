@@ -29,3 +29,7 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+bootJar {
+	mainClass = 'com.project2.group14.DemoApplication' // Replace with your actual main class path
+}
