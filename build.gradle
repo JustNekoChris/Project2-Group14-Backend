@@ -26,3 +26,17 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+
+bootJar {
+    enabled = true
+    archiveFileName = 'demo-0.0.1-SNAPSHOT.jar' // Ensure the correct JAR file name
+}
+
+jar {
+    enabled = false // Disable regular JAR, since we need the Spring Boot fat JAR
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
