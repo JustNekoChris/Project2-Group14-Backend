@@ -32,5 +32,5 @@ tasks.named('test') {
 
 // Set the main class for the bootJar task
 bootJar {
-    mainClass = 'com.project2.group14.demo.DemoApplication' // Correct way to set main class in Spring Boot
+    mainClass = 'com.project2.group14.DemoApplication' // Correct way to set main class in Spring Boot
 }
