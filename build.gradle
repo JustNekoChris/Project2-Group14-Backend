@@ -30,6 +30,7 @@ tasks.named('test') {
 	useJUnitPlatform()
 }
 
+// Set the main class for the JAR file
 bootJar {
-	mainClass = 'com.project2.group14.DemoApplication' // Replace with your actual main class path
+	mainClass = 'com.project2.group14.demo.DemoApplication' // Use 'mainClassName' instead of 'mainClass'
 }
