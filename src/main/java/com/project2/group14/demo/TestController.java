@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
 
     @Autowired
-    private UserRepository userRepository; // Replace with your actual repository
+    private UserRepository userRepository; // Replace with your actual repository]
     private ProductsRepository productsRepository;
 
     @GetMapping("/db")
@@ -20,9 +20,10 @@ public class TestController {
         try {
             long countUser = userRepository.count(); // Query database
             long countProducts = productsRepository.count();
-            return new ResponseEntity<>("Database connection successful. User row count: " + countUser + "\n" +
-                                              "Database connection successful. Products row count: " + countProducts + "\n"
-                                              , HttpStatus.OK);
+            return new ResponseEntity<>("<h3> Database connection successful. <h3/>" +
+                                        "User row count: " + countUser + "<br/>" +
+                                        "Products row count: " + countProducts + "<br/>"
+                                        , HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>("Database connection failed: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
