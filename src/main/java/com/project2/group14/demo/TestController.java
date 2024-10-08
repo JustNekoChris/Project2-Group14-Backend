@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
 
     @Autowired
-    private UserRepository userRepository; // Replace with your actual repository]
+    private UserRepository userRepository; // Replace with your actual repository
+    @Autowired
     private ProductsRepository productsRepository;
 
     @GetMapping("/db")
