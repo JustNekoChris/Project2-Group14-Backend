@@ -13,12 +13,16 @@ public class TestController {
 
     @Autowired
     private UserRepository userRepository; // Replace with your actual repository
+    private ProductsRepository productsRepository;
 
     @GetMapping("/db")
     public ResponseEntity<String> testDatabaseConnection() {
         try {
-            long count = userRepository.count(); // Query database
-            return new ResponseEntity<>("Database connection successful. Row count: " + count, HttpStatus.OK);
+            long countUser = userRepository.count(); // Query database
+            long countProducts = productsRepository.count();
+            return new ResponseEntity<>("Database connection successful. User row count: " + countUser + "\n" +
+                                              "Database connection successful. Products row count: " + countProducts + "\n"
+                                              , HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>("Database connection failed: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }

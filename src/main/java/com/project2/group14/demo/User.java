@@ -2,6 +2,8 @@ package com.project2.group14.demo;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "user")
 public class User {
@@ -13,7 +15,7 @@ public class User {
     private String name;
     private String email;
     private String password;
-
+    private Boolean admin;
     // Getters and Setters
 
     public Integer getUserID() {
@@ -46,5 +48,37 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Boolean getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Boolean admin) {
+        this.admin = admin;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(userID, user.userID);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(userID);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userID=" + userID +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", admin=" + admin +
+                '}';
     }
 }
