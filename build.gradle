@@ -19,6 +19,16 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.mariadb.jdbc:mariadb-java-client'
+	
+	// Lombok dependency
+    compileOnly 'org.projectlombok:lombok:1.18.30'
+    annotationProcessor 'org.projectlombok:lombok:1.18.30'
+
+    // For test classes
+    testCompileOnly 'org.projectlombok:lombok:1.18.30'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.30'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
@@ -28,14 +38,14 @@ tasks.named('test') {
 }
 
 
-bootJar {
-    enabled = true
-    archiveFileName = 'demo-0.0.1-SNAPSHOT.jar' // Ensure the correct JAR file name
-}
+// bootJar {
+//     enabled = true
+//     archiveFileName = 'demo-0.0.1-SNAPSHOT.jar' // Ensure the correct JAR file name
+// }
 
-jar {
-    enabled = false // Disable regular JAR, since we need the Spring Boot fat JAR
-}
+// jar {
+//     enabled = false // Disable regular JAR, since we need the Spring Boot fat JAR
+// }
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
