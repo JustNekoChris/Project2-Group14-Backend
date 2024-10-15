@@ -1,4 +1,4 @@
-package com.project2.group14.demo;
+package com.project2.group14.demo.entity;
 
 import jakarta.persistence.*;
 
@@ -58,27 +58,27 @@ public class User {
         this.admin = admin;
     }
 
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        User user = (User) o;
-//        return Objects.equals(userID, user.userID);
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(userID);
-//    }
-//
-//    @Override
-//    public String toString() {
-//        return "User{" +
-//                "userID=" + userID +
-//                ", name='" + name + '\'' +
-//                ", email='" + email + '\'' +
-//                ", password='" + password + '\'' +
-//                ", admin=" + admin +
-//                '}';
-//    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(userID, user.userID);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(userID);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userID=" + userID +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", admin=" + admin +
+                '}';
+    }
 }

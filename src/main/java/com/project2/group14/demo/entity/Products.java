@@ -1,4 +1,4 @@
-package com.project2.group14.demo;
+package com.project2.group14.demo.entity;
 
 import jakarta.persistence.*;
 
@@ -92,31 +92,31 @@ public class Products {
         this.bought = bought;
     }
 
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        Products products = (Products) o;
-//        return Objects.equals(productID, products.productID);
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(productID);
-//    }
-//
-//    @Override
-//    public String toString() {
-//        return "products{" +
-//                "productID=" + productID +
-//                ", name='" + name + '\'' +
-//                ", price=" + price +
-//                ", link='" + link + '\'' +
-//                ", imageLink='" + imageLink + '\'' +
-//                ", amountWanted=" + amountWanted +
-//                ", amountBought=" + amountBought +
-//                ", description='" + description + '\'' +
-//                ", bought=" + bought +
-//                '}';
-//    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Products products = (Products) o;
+        return Objects.equals(productID, products.productID);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(productID);
+    }
+
+    @Override
+    public String toString() {
+        return "products{" +
+                "productID=" + productID +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", link='" + link + '\'' +
+                ", imageLink='" + imageLink + '\'' +
+                ", amountWanted=" + amountWanted +
+                ", amountBought=" + amountBought +
+                ", description='" + description + '\'' +
+                ", bought=" + bought +
+                '}';
+    }
 }
