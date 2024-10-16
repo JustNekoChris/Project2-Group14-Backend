@@ -18,8 +18,8 @@ public class UserService implements UserInterface {
     }
 
     @Override
-    public User getUserById(User user) {
-        return userRepository.findById(user.getUserID()).get();
+    public User getUserById(Integer userId) {
+        return userRepository.findById(userId).get();
     }
 
     @Override 

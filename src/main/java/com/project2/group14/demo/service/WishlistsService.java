@@ -18,8 +18,8 @@ public class WishlistsService implements WishlistsInterface {
     }
 
     @Override
-    public Wishlists getWishlistsById(Wishlists Wishlists) {
-        return WishlistsRepository.findById(Wishlists.getWishlistID()).get();
+    public Wishlists getWishlistsById(Integer wishlistsId) {
+        return WishlistsRepository.findById(wishlistsId).get();
     }
 
     @Override 

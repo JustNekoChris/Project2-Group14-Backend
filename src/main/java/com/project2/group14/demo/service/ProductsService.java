@@ -18,8 +18,8 @@ public class ProductsService implements ProductsInterface {
     }
 
     @Override
-    public Products getProductsById(Products Products) {
-        return ProductsRepository.findById(Products.getProductID()).get();
+    public Products getProductsById(Integer ProductsId) {
+        return ProductsRepository.findById(ProductsId).get();
     }
 
     @Override 

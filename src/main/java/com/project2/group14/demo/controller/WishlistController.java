@@ -18,9 +18,9 @@ public class WishlistController {
         return WishlistsService.getWishlistsList();
     }
 
-    @GetMapping("/wishlists/id")
-    public void getWishlistsById(Wishlists wishlists) {
-        WishlistsService.getWishlistsById(wishlists);
+    @GetMapping("/wishlists/{id}")
+    public void getWishlistsById(@PathVariable("id") Integer wishlistsId) {
+        WishlistsService.getWishlistsById(wishlistsId);
     }
 
 

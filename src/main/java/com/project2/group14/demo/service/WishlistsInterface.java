@@ -8,7 +8,7 @@ public interface WishlistsInterface {
     Wishlists saveWishlists(Wishlists Wishlists);
 
     // gets Wishlists by Id @GetMapping
-    Wishlists getWishlistsById(Wishlists Wishlists);
+    Wishlists getWishlistsById(Integer WishlistsId);
 
     // deletes Wishlists by Id @DeleteMapping
     void deleteWishlistsById(Integer WishlistsId);

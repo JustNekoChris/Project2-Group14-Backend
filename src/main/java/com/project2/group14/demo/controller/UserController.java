@@ -26,9 +26,9 @@ public class UserController {
         return userService.getUserList();
     }
 
-    @GetMapping("/user/id")
-    public void getUserById(User user) {
-        userService.getUserById(user);
+    @GetMapping("/user/{id}")
+    public void getUserById(@PathVariable("id") Integer userId) {
+        userService.getUserById(userId);
     }
 
     @PostMapping("/user")

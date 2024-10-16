@@ -21,9 +21,9 @@ public class ProductController {
         return ProductsService.getProductsList();
     }
 
-    @GetMapping("/product/id")
-    public void getProductsById(Products products) {
-        ProductsService.getProductsById(products);
+    @GetMapping("/product/{id}")
+    public void getProductsById(@PathVariable("id") Integer productsId) {
+        ProductsService.getProductsById(productsId);
     }
 
     @PostMapping("/product")

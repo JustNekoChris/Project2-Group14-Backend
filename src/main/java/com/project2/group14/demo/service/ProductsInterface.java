@@ -8,7 +8,7 @@ public interface ProductsInterface {
     Products saveProducts(Products Products);
 
     // gets Products by Id @GetMapping
-    Products getProductsById(Products Products);
+    Products getProductsById(Integer ProductsId);
 
     // deletes Products by Id @DeleteMapping
     void deleteProductsById(Integer ProductsId);

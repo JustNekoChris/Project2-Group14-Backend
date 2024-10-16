@@ -8,7 +8,7 @@ public interface UserInterface {
     User saveUser(User user);
 
     // gets user by Id @GetMapping
-    User getUserById(User user);
+    User getUserById(Integer userId);
 
     // deletes user by Id @DeleteMapping
     void deleteUserById(Integer userId);
