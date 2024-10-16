@@ -3,7 +3,7 @@ package com.project2.group14.demo.service;
 import com.project2.group14.demo.entity.Products;
 import java.util.*;
 
-public interface ProductInterface {
+public interface ProductsInterface {
     // saves Products to database @PostMapping
     Products saveProducts(Products Products);
 
