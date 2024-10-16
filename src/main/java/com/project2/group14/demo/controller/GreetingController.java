@@ -1,8 +1,7 @@
 package com.project2.group14.demo.controller;
 
-import java.util.concurrent.atomic.AtomicLong;
 
-import com.project2.group14.demo.entity.Greeting;
+
 import com.project2.group14.demo.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,23 +13,22 @@ import java.util.*;
 @RestController
 public class GreetingController {
     
-    private static final String template = "Hello, %s!";
-    private final AtomicLong counter = new AtomicLong();
-
-    @GetMapping("/greeting")
-    public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
-        return new Greeting(counter.incrementAndGet(), String.format(template, name));
-    }
 
     @Autowired
     private UserService userService; 
+
+    @Autowired
+    private ProductsService ProductsService; 
+
+    @Autowired
+    private WishlistsService WishlistsService; 
     
-    @GetMapping("/db")
+    @GetMapping("/user")
     public List<User> getUserList() {
         return userService.getUserList();
     }
 
-    @PostMapping
+    @PostMapping("/user")
     public User saveUser(User user) {
         return userService.saveUser(user);
     }
@@ -39,20 +37,38 @@ public class GreetingController {
     public void deleteUserById(@PathVariable("id") Integer userId) {
         userService.deleteUserById(userId);
     }
+
+    @GetMapping("/product")
+    public List<Products> getProductsList() {
+        return ProductsService.getProductsList();
+    }
+
+    @PostMapping("/product")
+    public Products saveProduct(Products products) {
+        return ProductsService.saveProducts(products);
+    }
+
+    @DeleteMapping("/product/{id}")
+    public void deleteProductsById(@PathVariable("id") Integer productId) {
+        ProductsService.deleteProductsById(productId);
+    }
+
+    @GetMapping("/wishlists")
+    public List<Wishlists> getWishlistsList() {
+        return WishlistsService.getWishlistsList();
+    }
+
+    @PostMapping("/wishlists")
+    public Wishlists saveWishlists(Wishlists wishlists) {
+        return WishlistsService.saveWishlists(wishlists);
+    }
+
+    @DeleteMapping("/wishlists/{id}")
+    public void deleteWishlistsById(@PathVariable("id") Integer wishlistsId) {
+        WishlistsService.deleteWishlistsById(wishlistsId);
+    }
     
 
-    /*@GetMapping("/data") //dummy route
-    public ResponseEntity<List<MyEntity>> getData() {
-        List<MyEntity> data = // fetch data from the database
-        return ResponseEntity.ok(data);
-    }
-
-    @PostMapping("/data")
-    public ResponseEntity<MyEntity> createData(@RequestBody MyEntity entity) {
-        MyEntity savedEntity = // save entity to the database
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedEntity);
-    }
-        */
     
     }
 
