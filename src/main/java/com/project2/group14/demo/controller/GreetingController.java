@@ -29,6 +29,16 @@ public class GreetingController {
     public List<User> getUserList() {
         return userService.getUserList();
     }
+
+    @PostMapping
+    public User saveUser(User user) {
+        return userService.saveUser(user);
+    }
+
+    @DeleteMapping("/user/{id}")
+    public void deleteUserById(@PathVariable("id") Integer userId) {
+        userService.deleteUserById(userId);
+    }
     
 
     /*@GetMapping("/data") //dummy route
