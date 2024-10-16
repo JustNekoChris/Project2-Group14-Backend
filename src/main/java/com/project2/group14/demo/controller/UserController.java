@@ -26,6 +26,11 @@ public class UserController {
         return userService.getUserList();
     }
 
+    @GetMapping("/user/id")
+    public void getUserById(User user) {
+        userService.getUserById(user);
+    }
+
     @PostMapping("/user")
     public User saveUser(User user) {
         return userService.saveUser(user);

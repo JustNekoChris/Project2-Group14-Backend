@@ -18,6 +18,12 @@ public class WishlistController {
         return WishlistsService.getWishlistsList();
     }
 
+    @GetMapping("/wishlists/id")
+    public void getWishlistsById(Wishlists wishlists) {
+        WishlistsService.getWishlistsById(wishlists);
+    }
+
+
     @PostMapping("/wishlists")
     public Wishlists saveWishlists(Wishlists wishlists) {
         return WishlistsService.saveWishlists(wishlists);
