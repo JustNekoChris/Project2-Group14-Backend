@@ -14,9 +14,9 @@ public class Products {
     private String name;
     private Double price;
     private String link;
-    private String imageLink;
-    private Integer amountWanted;
-    private Integer amountBought;
+    private String image_link;
+    private Integer amount_wanted;
+    private Integer amount_bought;
     private String description;
     private Boolean bought;
 
@@ -52,28 +52,28 @@ public class Products {
         this.link = link;
     }
 
-    public String getImageLink() {
-        return imageLink;
+    public String getImage_link() {
+        return image_link;
     }
 
-    public void setImageLink(String imageLink) {
-        this.imageLink = imageLink;
+    public void setImage_link(String image_link) {
+        this.image_link = image_link;
     }
 
-    public Integer getAmountWanted() {
-        return amountWanted;
+    public Integer getAmount_wanted() {
+        return amount_wanted;
     }
 
-    public void setAmountWanted(Integer amountWanted) {
-        this.amountWanted = amountWanted;
+    public void setAmount_wanted(Integer amount_wanted) {
+        this.amount_wanted = amount_wanted;
     }
 
-    public Integer getAmountBought() {
-        return amountBought;
+    public Integer getAmount_bought() {
+        return amount_bought;
     }
 
-    public void setAmountBought(Integer amountBought) {
-        this.amountBought = amountBought;
+    public void setAmount_bought(Integer amount_bought) {
+        this.amount_bought = amount_bought;
     }
 
     public String getDescription() {
@@ -112,9 +112,9 @@ public class Products {
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 ", link='" + link + '\'' +
-                ", imageLink='" + imageLink + '\'' +
-                ", amountWanted=" + amountWanted +
-                ", amountBought=" + amountBought +
+                ", image_link='" + image_link + '\'' +
+                ", amount_wanted=" + amount_wanted +
+                ", amount_bought=" + amount_bought +
                 ", description='" + description + '\'' +
                 ", bought=" + bought +
                 '}';

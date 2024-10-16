@@ -11,12 +11,8 @@ public class Wishlists {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer wishlistID;
     private String wishlistName;
-    @ManyToOne
-    @JoinColumn(name = "userID", referencedColumnName = "userID")
-    private User user;
-    @ManyToOne
-    @JoinColumn(name = "productID", referencedColumnName = "productID")
-    private Products product;
+    private Integer userID;
+    private Integer productID;
 
     public Integer getWishlistID() {
         return wishlistID;
@@ -34,20 +30,20 @@ public class Wishlists {
         this.wishlistName = wishlistName;
     }
 
-    public User getUser() {
-        return user;
+    public Integer getUserID() {
+        return userID;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserID(Integer userID) {
+        this.userID = userID;
     }
 
-    public Products getProduct() {
-        return product;
+    public Integer getProductID() {
+        return productID;
     }
 
-    public void setProduct(Products product) {
-        this.product = product;
+    public void setProductID(Integer productID) {
+        this.productID = productID;
     }
 
     @Override
@@ -68,8 +64,8 @@ public class Wishlists {
         return "Wishlists{" +
                 "wishlistID=" + wishlistID +
                 ", wishlistName='" + wishlistName + '\'' +
-                ", user=" + user +
-                ", product=" + product +
+                ", userID=" + userID +
+                ", productID=" + productID +
                 '}';
     }
 }
