@@ -3,9 +3,13 @@ package com.project2.group14.demo.controller;
 import java.util.concurrent.atomic.AtomicLong;
 
 import com.project2.group14.demo.entity.Greeting;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import com.project2.group14.demo.service.UserService;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import com.project2.group14.demo.service.*;
+import com.project2.group14.demo.entity.*;
+import java.util.*;
 
 @RestController
 public class GreetingController {
@@ -16,6 +20,14 @@ public class GreetingController {
     @GetMapping("/greeting")
     public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
         return new Greeting(counter.incrementAndGet(), String.format(template, name));
+    }
+
+    @Autowired
+    private UserService userService; 
+    
+    @GetMapping("/db")
+    public List<User> getUserList() {
+        return userService.getUserList();
     }
     
 
