@@ -7,6 +7,7 @@ import java.util.Optional;
 import com.project2.group14.demo.entity.Products;
 import com.project2.group14.demo.repository.ProductsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -97,5 +98,9 @@ public class ProductsController {
         }
     }
 
-    @GetMapping("/items/list")
+    @GetMapping("/items/search")
+    public List<Products> getByIdAndName(@Param(value = "userID")Integer userID,
+                                         @Param(value = "search_term") String search_term) {
+        return productsRepository.findProductsByUserIdAndName(userID, search_term);
+    }
 }

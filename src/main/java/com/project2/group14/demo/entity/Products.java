@@ -10,6 +10,7 @@ public class Products {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer productID;
+    private Integer wishlistID;
 
     private String name;
     private Double price;
@@ -26,6 +27,14 @@ public class Products {
 
     public void setProductID(Integer productID) {
         this.productID = productID;
+    }
+
+    public Integer getWishlistID() {
+        return wishlistID;
+    }
+
+    public void setWishlistID(Integer wishlistID) {
+        this.wishlistID = wishlistID;
     }
 
     public String getName() {
@@ -109,6 +118,7 @@ public class Products {
     public String toString() {
         return "products{" +
                 "productID=" + productID +
+                ", wishlistID=" + wishlistID +
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 ", link='" + link + '\'' +

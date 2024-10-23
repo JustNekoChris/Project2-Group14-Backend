@@ -10,9 +10,8 @@ public class Wishlists {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer wishlistID;
-    private String wishlistName;
     private Integer userID;
-    private Integer productID;
+    private String wishlistName;
 
     public Integer getWishlistID() {
         return wishlistID;
@@ -38,14 +37,6 @@ public class Wishlists {
         this.userID = userID;
     }
 
-    public Integer getProductID() {
-        return productID;
-    }
-
-    public void setProductID(Integer productID) {
-        this.productID = productID;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -63,9 +54,8 @@ public class Wishlists {
     public String toString() {
         return "Wishlists{" +
                 "wishlistID=" + wishlistID +
-                ", wishlistName='" + wishlistName + '\'' +
                 ", userID=" + userID +
-                ", productID=" + productID +
+                ", wishlistName='" + wishlistName + '\'' +
                 '}';
     }
 }
