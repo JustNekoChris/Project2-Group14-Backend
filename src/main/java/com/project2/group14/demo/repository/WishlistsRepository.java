@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface WishlistsRepository extends JpaRepository<Wishlists, Integer> {
-    @Query("SELECT * FROM wishlists WHERE userID = :userID")
-    List<Wishlists> findWishlistsByUserID(Integer userID);
+    @Qeury("SELECT * FROM wishlists WHERE userID = :userID")
+    List<Wishlists> findWishlistsByUserID(@Param("userID") Integer userID)
 }
