@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface WishlistsRepository extends JpaRepository<Wishlists, Integer> {
     @Qeury("SELECT * FROM wishlists WHERE userID = :userID")
-    List<Wishlists> findWishlistsByUserID(@Param("userID") Integer userID)
+    List<Wishlists> findWishlistsByUserID(@Param("userID") Integer userID);
 }
