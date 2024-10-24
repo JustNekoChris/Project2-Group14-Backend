@@ -9,12 +9,12 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-public class SignUpController {
+public class UserController {
 
     private final UserRepository userRepository;
 
     @Autowired
-    public SignUpController(UserRepository userRepository) {
+    public UserController(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
@@ -34,14 +34,13 @@ public class SignUpController {
     @PostMapping("/users/create")
     public void createUser(@RequestParam(value = "name") String name,
                            @RequestParam(value = "email") String email,
-                           @RequestParam(value = "password") String password,
-                           @RequestParam(value = "admin", required = false) Boolean admin) {
+                           @RequestParam(value = "password") String password) {
 
         User newUser = new User();
         newUser.setName(name);
         newUser.setEmail(email);
         newUser.setPassword(password); 
-        newUser.setAdmin(admin != null ? admin : false);
+        newUser.setAdmin(false);
         userRepository.save(newUser);
     }
 
@@ -50,8 +49,7 @@ public class SignUpController {
     public void updateUser(@RequestParam(value = "userID") Integer userID,
                            @RequestParam(value = "name", required = false) String name,
                            @RequestParam(value = "email", required = false) String email,
-                           @RequestParam(value = "password", required = false) String password,
-                           @RequestParam(value = "admin", required = false) Boolean admin) {
+                           @RequestParam(value = "password", required = false) String password) {
 
         Optional<User> optionalUser = userRepository.findById(userID);
         if (optionalUser.isPresent()) {
@@ -64,9 +62,6 @@ public class SignUpController {
             }
             if (password != null) {
                 user.setPassword(password); 
-            }
-            if (admin != null) {
-                user.setAdmin(admin);
             }
             userRepository.save(user);
         }
