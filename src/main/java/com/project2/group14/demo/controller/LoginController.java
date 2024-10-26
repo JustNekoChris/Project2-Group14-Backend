@@ -4,8 +4,10 @@ import com.project2.group14.demo.entity.User;
 import com.project2.group14.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -20,14 +22,20 @@ public class LoginController {
     }
 
     // Login a user
-    @PostMapping
-    public ResponseEntity<?> loginUser(@RequestParam(value = "email") String email,
-                                       @RequestParam(value = "password") String password) {
+    @PostMapping()
+    public ResponseEntity<?> loginUser(@RequestBody Map<String, String> loginData) {
+        String email = loginData.get("email");
+        String password = loginData.get("password");
+
+        if (email == null || password == null) {
+            return ResponseEntity.badRequest().body("Email or password is missing.");
+        }
+
         Optional<User> optionalUser = userRepository.findByEmail(email);
 
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
-            if (user.getPassword().equals(password)) {
+            if (user.getPassword().equals(BCrypt.hashpw(password, user.getSalt()))) {
                 return ResponseEntity.ok("Welcome " + user.getName() + "!");
             } else {
                 return ResponseEntity.status(401).body("Invalid password.");
