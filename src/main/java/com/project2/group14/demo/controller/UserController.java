@@ -73,15 +73,13 @@ public class UserController {
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
 
-            // Update the fields only if present in the request body
+            // Update fields only if present in the request body
             if (updatedDetails.containsKey("name")) {
                 user.setName((String) updatedDetails.get("name"));
             }
-            if (updatedDetails.containsKey("email")) {
-                user.setEmail((String) updatedDetails.get("email"));
-            }
             if (updatedDetails.containsKey("password")) {
                 user.setPassword((String) updatedDetails.get("password"));
+                user.setSalt((String) updatedDetails.get("salt"));
             }
 
             userRepository.save(user);
