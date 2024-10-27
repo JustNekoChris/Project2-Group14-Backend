@@ -73,7 +73,7 @@ public class UserController {
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
 
-            // Update the fields only if present in the request body
+            // Update fields only if present in the request body
             if (updatedDetails.containsKey("name")) {
                 user.setName((String) updatedDetails.get("name"));
             }
