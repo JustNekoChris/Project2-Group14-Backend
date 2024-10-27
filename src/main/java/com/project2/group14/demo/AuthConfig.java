@@ -18,9 +18,9 @@ public class AuthConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
             .cors() // Enable CORS support
-            .configurationSource(corsConfigurationSource()) // Apply custom CORS config
+            .configurationSource(corsConfigurationSource())
             .and()
-            .csrf(AbstractHttpConfigurer::disable) // Disable CSRF for testing
+            .csrf(AbstractHttpConfigurer::disable) // Disable CSRF
             .authorizeRequests(auth -> auth.anyRequest().permitAll());
 
         return http.build();
