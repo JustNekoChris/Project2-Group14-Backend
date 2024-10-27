@@ -20,4 +20,9 @@ public interface ProductsRepository extends JpaRepository<Products, Integer> {
             "JOIN Wishlists w ON p.wishlistID = w.wishlistID " +
             "WHERE w.userID = :userID AND p.name LIKE CONCAT('%', :search_term, '%')")
     List<Products> findProductsByUserIdAndName(@Param("userID") Integer userID, @Param("search_term") String search_term);
+
+    @Query("SELECT p " +
+            "FROM Products p " +
+            "WHERE p.wishlistID = :wishlistID")
+    List<Products> findProductsByWishlistId(Integer wishlistID);
 }

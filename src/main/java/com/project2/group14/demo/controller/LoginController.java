@@ -2,6 +2,7 @@ package com.project2.group14.demo.controller;
 
 import com.project2.group14.demo.entity.User;
 import com.project2.group14.demo.repository.UserRepository;
+import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCrypt;
@@ -36,7 +37,8 @@ public class LoginController {
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
             if (user.getPassword().equals(BCrypt.hashpw(password, user.getSalt()))) {
-                return ResponseEntity.ok("Welcome " + user.getName() + "!");
+                String jsonResponse = String.format("{\"userID\":\"%s\",\"name\":\"%s\"}", user.getUserID(), user.getName());
+                return ResponseEntity.ok(jsonResponse);
             } else {
                 return ResponseEntity.status(401).body("Invalid password.");
             }

@@ -38,14 +38,19 @@ public class WishlistController {
 
     // Create a new wishlist
     @PostMapping("/create")
-    public ResponseEntity<String> createWishlist(@RequestParam(value = "userID") Integer userID,
-                                                 @RequestParam(value = "wishlistName") String wishlistName) {
+    public ResponseEntity<Wishlists> createWishlist(@RequestParam(value = "userID") Integer userID,
+                                                    @RequestParam(value = "wishlistName") String wishlistName) {
         Wishlists newWishlist = new Wishlists();
         newWishlist.setUserID(userID);
         newWishlist.setWishlistName(wishlistName);
-        wishlistsRepository.save(newWishlist);
-        return new ResponseEntity<>("Wishlist created successfully!", HttpStatus.CREATED);
+
+        // Save the new wishlist to the repository
+        Wishlists savedWishlist = wishlistsRepository.save(newWishlist);
+
+        // Return the saved wishlist as JSON response
+        return new ResponseEntity<>(savedWishlist, HttpStatus.CREATED);
     }
+
 
     // Update an existing wishlist
     @PatchMapping("/update")
