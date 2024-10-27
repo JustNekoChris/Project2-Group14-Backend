@@ -3,9 +3,12 @@ package com.project2.group14.demo.controller;
 import com.project2.group14.demo.entity.User;
 import com.project2.group14.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -29,19 +32,36 @@ public class UserController {
     public Optional<User> getUserById(@RequestParam(value = "userID") Integer userID) {
         return userRepository.findById(userID);
     }
+    @GetMapping("/checkemail")
+    public ResponseEntity<Map<String, Boolean>> checkEmail(@RequestParam String email) {
+        boolean exists = userRepository.existsByEmail(email);
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("exists", exists);
+        return ResponseEntity.ok(response);
+    }
 
     // Create a new user
-    @PostMapping("/users/create")
-    public void createUser(@RequestParam(value = "name") String name,
-                           @RequestParam(value = "email") String email,
-                           @RequestParam(value = "password") String password) {
+    @PostMapping("/signup")
+    public ResponseEntity<?> signupUser(@RequestBody Map<String, String> signupData) {
+        String name = signupData.get("name");
+        String email = signupData.get("email");
+        String password = signupData.get("password");
+        String salt = signupData.get("salt");
+
+        if (email == null || password == null || salt == null) {
+            return ResponseEntity.badRequest().body("Missing email, password, or salt.");
+        }
 
         User newUser = new User();
         newUser.setName(name);
         newUser.setEmail(email);
-        newUser.setPassword(password); 
+        newUser.setPassword(password);
         newUser.setAdmin(false);
+        newUser.setSalt(salt); // Store salt with user record
         userRepository.save(newUser);
+        userRepository.save(newUser);
+
+        return ResponseEntity.ok("User created successfully.");
     }
 
     // Update an existing user by ID

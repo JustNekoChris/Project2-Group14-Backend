@@ -15,6 +15,7 @@ public class User {
     private String name;
     private String email;
     private String password;
+    private String salt;
     private Boolean admin;
     // Getters and Setters
 
@@ -58,6 +59,14 @@ public class User {
         this.admin = admin;
     }
 
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -78,6 +87,7 @@ public class User {
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
+                ", salt='" + salt + '\'' +
                 ", admin=" + admin +
                 '}';
     }
