@@ -3,6 +3,7 @@ package com.project2.group14.demo.controller;
 import com.project2.group14.demo.entity.User;
 import com.project2.group14.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -65,25 +66,28 @@ public class UserController {
     }
 
     // Update an existing user by ID
-    @PatchMapping("/users/update")
-    public void updateUser(@RequestParam(value = "userID") Integer userID,
-                           @RequestParam(value = "name", required = false) String name,
-                           @RequestParam(value = "email", required = false) String email,
-                           @RequestParam(value = "password", required = false) String password) {
+    @PutMapping("/users/update")
+    public ResponseEntity<String> updateUser(@RequestParam("userID") Integer userID, @RequestBody Map<String, Object> updatedDetails) {
 
         Optional<User> optionalUser = userRepository.findById(userID);
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
-            if (name != null) {
-                user.setName(name);
+
+            // Update the fields only if present in the request body
+            if (updatedDetails.containsKey("name")) {
+                user.setName((String) updatedDetails.get("name"));
             }
-            if (email != null) {
-                user.setEmail(email);
+            if (updatedDetails.containsKey("email")) {
+                user.setEmail((String) updatedDetails.get("email"));
             }
-            if (password != null) {
-                user.setPassword(password); 
+            if (updatedDetails.containsKey("password")) {
+                user.setPassword((String) updatedDetails.get("password"));
             }
+
             userRepository.save(user);
+            return ResponseEntity.ok("User updated successfully");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
         }
     }
 

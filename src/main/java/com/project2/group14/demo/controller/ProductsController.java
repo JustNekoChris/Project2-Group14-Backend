@@ -91,39 +91,33 @@ public class ProductsController {
         return productsRepository.findProductsByWishlistId(wishlistID);
     }
 
-    @PatchMapping("/items/update")
-    public void updateProduct(@RequestParam(value = "productID") Integer productID,
-                              @RequestParam(value = "name", required = false) String name,
-                              @RequestParam(value = "price", required = false) Double price,
-                              @RequestParam(value = "link", required = false) String link,
-                              @RequestParam(value = "image_link", required = false) String image_link,
-                              @RequestParam(value = "amount_wanted", required = false) Integer amount_wanted,
-                              @RequestParam(value = "description", required = false) String description,
-                              @RequestParam(value = "bought", required = false) Boolean bought) {
-        Optional<Products> temp = productsRepository.findById(productID);
-        if (temp.isPresent()) {
-            if (name != null) {
-                temp.get().setName(name);
-            }
-            if (price != null) {
-                temp.get().setPrice(price);
-            }
-            if (link != null) {
-                temp.get().setLink(link);
-            }
-            if (image_link != null) {
-                temp.get().setImage_link(image_link);
-            }
-            if (amount_wanted != null) {
-                temp.get().setAmount_wanted(amount_wanted);
-            }
-            if (description != null) {
-                temp.get().setDescription(description);
-            }
-            if (bought != null) {
-                temp.get().setBought(bought);
-            }
-            productsRepository.save(temp.get());
+    @PutMapping("/items/update")
+    public ResponseEntity<String> updateProduct(@RequestParam Integer productID,
+                                                @RequestParam(required = false) String name,
+                                                @RequestParam(required = false) Double price,
+                                                @RequestParam(required = false) String link,
+                                                @RequestParam(required = false) String image_link,
+                                                @RequestParam(required = false) Integer amount_wanted,
+                                                @RequestParam(required = false) String description,
+                                                @RequestParam(required = false) Boolean bought) {
+
+        Optional<Products> optionalProduct = productsRepository.findById(productID);
+
+        if (optionalProduct.isPresent()) {
+            Products product = optionalProduct.get();
+
+            if (name != null) product.setName(name);
+            if (price != null) product.setPrice(price);
+            if (link != null) product.setLink(link);
+            if (image_link != null) product.setImage_link(image_link);
+            if (amount_wanted != null) product.setAmount_wanted(amount_wanted);
+            if (description != null) product.setDescription(description);
+            if (bought != null) product.setBought(bought);
+
+            productsRepository.save(product);
+            return ResponseEntity.ok("Product updated successfully.");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product not found.");
         }
     }
 
