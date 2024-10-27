@@ -67,9 +67,9 @@ public class UserController {
 
     // Update an existing user by ID
     @PutMapping("/users/update")
-    public ResponseEntity<String> updateUser(@RequestParam("userID") Integer userID, @RequestBody Map<String, Object> updatedDetails) {
+    public ResponseEntity<String> updateUser(@RequestBody Map<String, Object> updatedDetails) {
 
-        Optional<User> optionalUser = userRepository.findById(userID);
+        Optional<User> optionalUser = userRepository.findById((Integer) updatedDetails.get("userID"));
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
 
